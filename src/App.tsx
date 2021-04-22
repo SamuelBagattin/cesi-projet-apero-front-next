@@ -1,24 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import "./App.scss";
+import { Header } from "./nav/Header";
+import { AppRoutes } from "./nav/routes";
+import { PlacesPages } from "./features/places/PlacesPages";
+import { Footer } from "./nav/Footer";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="h-screen w-screen flex flex-col justify-between bg-white dark:bg-gray-800 dark:text-gray-100">
+      <BrowserRouter>
+        <Header/>
+        <main className="p-9 place-self-start self-stretch flex-grow">
+          <Switch>
+            <Route path={`/${AppRoutes.Places}`}>
+              <PlacesPages/>
+            </Route>
+            <Route path={`/${AppRoutes.Bonjour}`}>
+              <p>aperos</p>
+            </Route>
+            <Route path={`/${AppRoutes.Aurevoir}`}>
+              <p>Aurevoir</p>
+            </Route>
+            <Route path={`/${AppRoutes.Root}`}>
+              <p>root</p>
+            </Route>
+          </Switch>
+        </main>
+        <Footer/>
+      </BrowserRouter>
     </div>
   );
 }
